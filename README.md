@@ -15,10 +15,14 @@ How about some hide and seek heh?
 Before starting the challenge, a quick google search for "atbash" showed that it is a simple character substitution cryptographical algorithm.
 
 First things first i checked the contents of the image:
+'''
 $ strings atbash.jpg
+'''
 but nothing seemed to be encrypted using said algorithm.
 I then checked if there was any hidden file using:
+'''
 $ binwalk atbash.jpg
+'''
 with no luck.
 I also analyzed the image using stegsolve but nothing was found.
 Finally, after using steghide, a ".txt" file was found within the image.
