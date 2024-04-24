@@ -9,6 +9,7 @@ The flags will be slightly obscured so that the reader may try the challenge by 
 
 ## HideToSee (100pts)
 How about some hide and seek heh?
+
 ![atbash](https://github.com/Waz3d/PicoCTF2023_Writeups/assets/96386635/cdee59df-a398-40cc-9604-d7401cca46f0)
 
 Before starting the challenge, a quick google search for "atbash" showed that it is a simple character substitution cryptographical algorithm.
