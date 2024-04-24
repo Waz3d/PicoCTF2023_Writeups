@@ -65,4 +65,23 @@ Moreover, inside the "Common Name" field, there will be our flag.
 ### picoCTF{read_mycert_XXXXXXXX}
 
 ## Rotation (100pts)
+You will find the flag after decrypting this file
 
+The challenge provides a ".txt" file, containing the following cyphertext:
+
+xqkwKBN{z0bib1wv_l3kzgxb3l_949in1i1}
+
+The name suggests a rotation encryption, such as Caesar's encryption.
+Testing the different 26 possible rotations once can get the flag.
+The key for the rotation is found out to be 8 to the right or 18 to the left.
+
+### picoCTF{r0tat1on_d3crypt3d_XXXXXXXX}
+
+## PowerAnalysis: Warmup (200pts)
+This encryption algorithm leaks a "bit" of data every time it does a computation. Use this to figure out the encryption key.
+The flag will be of the format picoCTF{<encryption key>} where <encryption key> is 32 lowercase hex characters comprising the 16-byte encryption key being used by the program.
+
+To solve the challenge we are given a python script.
+The description suggests that a "bit" of the key used will be leaked at each operation, thus leaking the whole key after 16*8 operations.
+
+Work in progress......
