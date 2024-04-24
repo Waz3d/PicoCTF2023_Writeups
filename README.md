@@ -40,6 +40,7 @@ The challenge provides a certificate. The name of the challenge suggests to actu
 The content of the certificate is the following: 
 
 -----BEGIN CERTIFICATE REQUEST-----
+
 MIICpzCCAY8CAQAwPDEmMCQGA1UEAwwdcGljb0NURntyZWFkX215Y2VydF82OTNm
 N2MwM30xEjAQBgNVBCkMCWN0ZlBsYXllcjCCASIwDQYJKoZIhvcNAQEBBQADggEP
 ADCCAQoCggEBAPp+XuDB3ZkmrkvAsgtjP+mjIcYDWfptuZsJieu6eRl39wl4Sg38
@@ -55,6 +56,7 @@ btvn3zT7lMms6z1qM7xUWXR76n2xL/81cdF725nBZ00mWmPW0S1pSmA4EEHCEgNW
 0vWQqsIDki3gYc4NCm8OHjx79kcwE+ksyc6vHgMOwsYoOFJnyayhl15oN/3x7hW3
 G1xovPupABpfOSNOcTwbgfrfjUDOLx/wirvj9L1N5EGDh4FOLaRZDs+tMrimGBBS
 zGU13BnykmQ5jOQ=
+
 -----END CERTIFICATE REQUEST-----
 
 Simply by copying and pasting it in an online certificate reader, it is possible to visualize informations like the subject and a summary.
