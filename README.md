@@ -104,6 +104,6 @@ respect the map obtained from the server.
 This can be done for each byte of the key, thus obtaining the flag.
 
 The python script used will be provided in the reporitory and it can be found in 
-##### Crypto -> PowerAnalysis: Warmup
+#### Crypto -> PowerAnalysis: Warmup
 
-### picoCTF{}
+### picoCTF{6f040f33f3521c634878c02fXXXXXXXX}
