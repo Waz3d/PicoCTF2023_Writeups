@@ -82,6 +82,28 @@ This encryption algorithm leaks a "bit" of data every time it does a computation
 The flag will be of the format picoCTF{<encryption key>} where <encryption key> is 32 lowercase hex characters comprising the 16-byte encryption key being used by the program.
 
 To solve the challenge we are given a python script.
-The description suggests that a "bit" of the key used will be leaked at each operation, thus leaking the whole key after 16*8 operations.
 
-Work in progress......
+Within the python script one can clearly see that only the least significant bit of the cyphertext is leaked. Moreover, the output is only the number of odd results after the encryption, byte per byte, using the secret key and
+a Sbox. The idea to obtain the key is to exploit the fact that we know the Sbox and the fact that we can easily see if the result of Sbox[ our_byte ^ key_byte ] is even or odd.
+
+If one tries to connect to the server and send the string 
+00000000000000000000000000000000
+will obtain as output the number of odd results after the Sbox, which in our case will be 6.
+Sending instead:
+ff000000000000000000000000000000
+will give give yet again as a result the number 6, but, giving 
+11000000000000000000000000000000
+will instead output 7.
+
+This means that Sbox[ 0x00 ^ key_byte ] give an even result, same goes for Sbox[ 0xff ^ key_byte ] but Sbox[ 0x11 ^ key_byte ] give instead an odd result.
+
+Following this idea, it is possible using a python script and pwntools, to quickly test each byte of the 16 bytes of the key, obtain a map that associates
+input_byte to a 0 if the result is even, 1 if it's odd. Given the map, we can test 256 possible values for the key_byte and find the one and only that will
+respect the map obtained from the server.
+
+This can be done for each byte of the key, thus obtaining the flag.
+
+The python script used will be provided in the reporitory and it can be found in 
+##### Crypto -> PowerAnalysis: Warmup
+
+### picoCTF{}
