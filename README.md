@@ -87,12 +87,19 @@ Within the python script one can clearly see that only the least significant bit
 a Sbox. The idea to obtain the key is to exploit the fact that we know the Sbox and the fact that we can easily see if the result of Sbox[ our_byte ^ key_byte ] is even or odd.
 
 If one tries to connect to the server and send the string 
+
 00000000000000000000000000000000
+
 will obtain as output the number of odd results after the Sbox, which in our case will be 6.
+
 Sending instead:
+
 ff000000000000000000000000000000
+
 will give give yet again as a result the number 6, but, giving 
+
 11000000000000000000000000000000
+
 will instead output 7.
 
 This means that Sbox[ 0x00 ^ key_byte ] give an even result, same goes for Sbox[ 0xff ^ key_byte ] but Sbox[ 0x11 ^ key_byte ] give instead an odd result.
