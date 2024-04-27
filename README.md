@@ -123,7 +123,7 @@ Online research suggests that AES Dynamic Power Analysis attacks can leak inform
 If one tries to send the same plaintext twice to the remote server, he will be getting traces with different values. This is because there is some noise
 introduced in the power consumption metric, thus making the attack slightly harder.
 
-After a lot of online reasearch i found a very handy python library called SCAred, which can be easily installe with 
+After a lot of online reasearch i found a very handy python library called SCAred, which can be easily installed with 
 
 '''bash
 pip install scared
