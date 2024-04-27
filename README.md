@@ -109,8 +109,40 @@ input_byte to a 0 if the result is even, 1 if it's odd. Given the map, we can te
 respect the map obtained from the server.
 
 This can be done for each byte of the key, thus obtaining the flag.
-
 The python script used will be provided in the reporitory and it can be found in 
 #### Crypto -> PowerAnalysis: Warmup
 
 ### picoCTF{6f040f33f3521c634878c02fXXXXXXXX}
+
+## PowerAnalysis: Part 1 (400pts)
+This embedded system allows you to measure the power consumption of the CPU while it is running an AES encryption algorithm. Use this information to leak the key via dynamic power analysis.
+
+Upon connecting to the remote server, after providing a 16 byte plaintext in hex format, you will be given a trace of 2666 CPU power consumption values.
+Online research suggests that AES Dynamic Power Analysis attacks can leak informations about the key given the correlation with the Hamming distance.
+
+If one tries to send the same plaintext twice to the remote server, he will be getting traces with different values. This is because there is some noise
+introduced in the power consumption metric, thus making the attack slightly harder.
+
+After a lot of online reasearch i found a very handy python library called SCAred, which can be easily installe with 
+
+'''bash
+pip install scared
+'''
+
+The latter contains a set of functions for the implementation of side-channel analysis, such as in fact the dynamic power consumption attacks.
+
+The method that should be used to implement the attack is CPAAttack, as it can be seen in the attack.py file at the following path:
+#### Crypto -> PowerAnalysis: Part 1
+
+The idea behind the attack is to exploit the fact that we can obtain an infinite amount of combinations of plaintexts - traces, thus allowing us to eventually get the
+amount of informations required to find the plaintext that correlates the most with the key, looking at the power consumption traces.
+
+This can be done by the CPAAttack method provided by "scared".
+
+The attack can be implemented in a simple way:
+Create a set of randomly generated plaintexts, making sure that for each byte index there will be every possible byte at least once (simply create a plaintext list of at least 300 entries to be sure).
+Collect the traces for each of the generated plaintext.
+Start the CPAAttack.
+Find the bytes that, for each index in the plaintext, obtained the highest score for the correlation.
+
+### picoCTF{af55be9bb08d78491b0aa416XXXXXXXX}
