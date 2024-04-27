@@ -146,3 +146,27 @@ Start the CPAAttack.
 Find the bytes that, for each index in the plaintext, obtained the highest score for the correlation.
 
 ### picoCTF{af55be9bb08d78491b0aa416XXXXXXXX}
+
+## PowerAnalysis: Part 2 (500pts)
+This embedded system allows you to measure the power consumption of the CPU while it is running an AES encryption algorithm. However, this time you have access to only a very limited number of measurements.
+
+This challenge is pretty much equal to the previous one, with the only difference being the fact that we do not have the possibility to obtain an unlimited amount of combinations of plaintext - traces, but we 
+are given a limited set of them.
+
+We can see that within the traces.zip file there are 100 txt files containing plaintext and trace.
+100 traces might not be enough but, taking into account the solution from the previous challenge, [PowerAnalysis: Part 1]  we can reason a little bit about this one too.
+
+First of all, the reason why we took 300 or more samples in the previous one, was to be sure that we had, for each byte of the plaintext, every possible value, in fact the possible values for a byte are 256!
+In our case we only have 100.
+The reason why we wanted that was to make sure that when sending our data to the CPAAttack we provided the traces associated to a index_byte that had the same value as the key. 
+The CPAAttack in fact can return the value of the byte, for each index, that had the highest score during the power analysis.
+This means that even if we only have 100 plaintexts, if within those there are the correct bytes at the correct indexes, we can find the key.
+
+The solution is provided once again in the following directory, inside the attack.py file:
+
+#### Crypto -> PowerAnalysis: Part 2
+
+The attack is in fact the same as the Part 1, with the only difference being the fact that we have to read the plaintext and the traces from a list of files.
+Running the script will provide the flag.
+
+### picoCTF{edb6ccb7f392059ae1129d8eXXXXXXXX}
