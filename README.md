@@ -125,9 +125,9 @@ introduced in the power consumption metric, thus making the attack slightly hard
 
 After a lot of online reasearch i found a very handy python library called SCAred, which can be easily installed with 
 
-'''bash
-pip install scared
-'''
+```bash
+$ pip install scared
+```
 
 The latter contains a set of functions for the implementation of side-channel analysis, such as in fact the dynamic power consumption attacks.
 
