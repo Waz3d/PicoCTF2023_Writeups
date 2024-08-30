@@ -180,7 +180,7 @@ Upon opening the we portal one can easily see that there are only 3 buttons, tha
 Using Burp it is possible to see that a post request gets sent when clicking on a "detail" button.
 The request is formatted in the following manner: 
 
-```
+```xml
 POST /data HTTP/1.1
 Host: saturn.picoctf.net:52302
 Content-Length: 61
