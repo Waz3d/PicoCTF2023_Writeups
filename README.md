@@ -215,3 +215,39 @@ The post request data should be the following:
 ```
 
 ### picoCTF{XML_3xtern@l_3nt1t1ty_XXXXXXXX}
+
+## More SQLi (Medium)
+
+Opening the website, you see that you can log into the web server providing an username and a password. 
+By sending some random values, for example "a" for both username and password, you get sent to a web page which provides you informations about the username, password provided and also **the query done by the server**.
+The query is the following:
+
+**SELECT id FROM users WHERE password = 'a' AND username = 'a'**
+
+By providing for the username
+> a
+and for the password
+> **a' or 1 = 1 -- **
+It is possible to pass the first step
+
+
+![picoctf](https://github.com/user-attachments/assets/294decb1-7647-4c51-b5d2-c4a490957e2a)
+
+Here we can see that it is still possible to make SQL Injection attacks, moreover, it should be possible to add data from other tables using UNION.
+The payload is the following:
+> a' UNION SELECT 'a', 'a', 'a' -- 
+
+Providing this output:
+
+![example](https://github.com/user-attachments/assets/2d467899-9359-499b-b957-f81e0d9e7d27)
+
+The first paylod should be the following, remembering that it is a SQLite database:
+
+> a' UNION SELECT name, sql, 'a' FROM sqlite_master -- 
+
+That will provide informations about the tables and the data within the tables of the whole database.
+Now we can simply do another UNION, in order to add the flag value.
+
+> a' UNION SELECT flag, 'a', 'a' FROM more_table -- 
+
+### picoCTF{G3tting_5QL_1nJ3c7I0N_l1k3_y0u_sh0ulD_XXXXXXXX}
