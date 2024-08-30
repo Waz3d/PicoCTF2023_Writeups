@@ -251,3 +251,26 @@ Now we can simply do another UNION, in order to add the flag value.
 > a' UNION SELECT flag, 'a', 'a' FROM more_table -- 
 
 ### picoCTF{G3tting_5QL_1nJ3c7I0N_l1k3_y0u_sh0ulD_XXXXXXXX}
+
+## MatchTheRegex (Medium)
+
+By simply opening the link and looking at the source code, in the javascript sections we can find the following function:
+
+```js
+function send_request() {
+		let val = document.getElementById("name").value;
+		// ^p.....F!?
+		fetch(`/flag?input=${val}`)
+			.then(res => res.text())
+			.then(res => {
+				const res_json = JSON.parse(res);
+				alert(res_json.flag)
+				return false;
+			})
+		return false;
+	}
+```
+
+The 3rd row hints at a name that starts with p and ends with F, with possibly 5 letters between. The first test should be using picoCTF, which provides the flag.
+
+### picoCTF{succ3ssfully_matchtheregex_XXXXXXXX}
